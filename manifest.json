@@ -1,0 +1,20 @@
+{
+  "name": "Jay VA",
+  "short_name": "Jay VA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1220",
+  "theme_color": "#0A66C2",
+  "icons": [
+    {
+      "src": "/images/link icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/link icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

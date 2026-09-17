@@ -4541,3 +4541,242 @@ p,li,h1,h2,h3,h4,h5,h6,a,span,button{overflow-wrap:anywhere}
    click from the embed). */
 
 /* ITEM #2 — the video lightbox player/iframe-wrap rules were removed along with the video lightbox markup and script. */
+
+/* =========================================================
+   ITEM #1 — HERO, MOBILE LAYOUT
+   ---------------------------------------------------------
+   The mobile hero photo now runs full-bleed behind the whole
+   section — same idea as desktop — instead of being confined
+   to a lower "zone" with its own edge. There's no seam left to
+   show a division line because there's no longer a boundary
+   between a plain-background area and a photo area: it's one
+   continuous image from the top of the hero to the bottom.
+
+   Legibility over the photo is handled by a soft white scrim
+   (the .hero-bg-photo::before gradient below) that's strongest
+   behind the headline/subheadline and eases off lower down, so
+   the image reads clearly and vividly behind the CTAs while the
+   text above it always stays readable.
+
+   Desktop (>=769px) is completely untouched.
+   ========================================================= */
+
+@media (max-width:768px){
+
+    .hero{
+        /* Bottom breathing room under the CTAs. */
+        --hero-cta-inset:clamp(14px,4vh,36px);
+
+        min-height:100vh;
+        min-height:100svh;
+        padding:92px 0 24px;
+
+        /* Stretch instead of centre so the inner column can own
+           the full height and distribute content itself. */
+        align-items:stretch;
+    }
+
+    /* Let the hero's inner column fill the section height —
+       this is what makes "push the CTAs to the bottom" work. */
+    .hero > .container{
+        display:flex;
+        flex-direction:column;
+        flex:1 1 auto;
+        width:calc(100% - 28px);
+        /* .container ships with margin:auto. Inside a flex parent the
+           auto TOP/BOTTOM margins swallow the free space and centre the
+           column, which cancels align-items:stretch — so the column
+           never fills the hero and the CTAs can't be pushed down.
+           Left/right auto is kept so it stays horizontally centred. */
+        margin-top:0;
+        margin-bottom:0;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-grid{
+        flex:1 1 auto;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        gap:0;
+    }
+
+    .hero-content{
+        flex:1 1 auto;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        width:100%;
+        max-width:100%;
+        margin:0 auto;
+        /* Nudges the H1 down off the very top of the hero so it
+           doesn't start flush under the navbar. Raise this value to
+           push the headline down further. */
+        padding-top:clamp(18px,4vh,36px);
+    }
+
+    /* ---- ZONE 1: centred headline + subheadline ---- */
+
+    .hero-content h1{
+        font-size:clamp(1.75rem,7.2vw,2.3rem);
+        line-height:1.2;
+        letter-spacing:-.035em;
+        max-width:20ch;
+        margin:0 auto 14px;
+        text-wrap:balance;
+        text-shadow:0 2px 20px rgba(255,255,255,.75);
+    }
+
+    .hero-content p{
+        font-size:clamp(.9375rem,3.6vw,1.0625rem);
+        line-height:1.65;
+        /* Widened again — now runs the full container width rather
+           than being capped by a character count. This is the widest
+           this can go without touching the container's own side
+           padding; it drops the subheadline to its shortest possible
+           line count. */
+        max-width:100%;
+        margin:0 auto;
+        text-shadow:0 2px 16px rgba(255,255,255,.8);
+    }
+
+    /* ---- ZONE 3: CTAs, lower-centre of the photo ----
+       margin-top:auto eats all the leftover height, which
+       pushes this row to the bottom of the hero; the inset
+       then lifts it back up off the very edge so it lands
+       around the lower-centre of the image. */
+    .hero-buttons{
+        margin-top:auto;
+        /* ITEM #10 — sits closer to the very bottom edge of the
+           hero now (was the larger --hero-cta-inset value). */
+        margin-bottom:12px;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        /* ITEM #10 — tighter pair (was 14px). */
+        gap:8px;
+        width:100%;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary{
+        /* ITEM #10 — narrower again so they no longer reach the
+           screen edges, with visible side margin instead of the
+           full-width edge-to-edge treatment. */
+        width:min(82%,300px);
+        min-width:0;
+        min-height:48px;
+        padding:14px 20px;
+        /* Slightly stronger lift so both buttons stay readable
+           sitting on top of the photograph. */
+        box-shadow:0 10px 28px rgba(15,23,42,.18);
+    }
+
+    /* ---- THE PHOTO: anchored right under the subheadline ----
+       No card, no rounded corners, no shadow — just the image
+       itself. `top` is pulled up slightly further than where the
+       subheadline actually ends, so the top strip of the photo
+       tucks in underneath the last line of the subheadline (it's
+       already z-index:-2, behind the text, so the overlap just
+       reads as the image peeking out from under the copy). Tune
+       this value if the headline/subheadline wrap differently. */
+    .hero-bg-photo{
+        /* ITEM #9 — nudged up slightly from 42vh so the CTAs don't
+           sit over the subject's face. */
+        top:39vh;
+        left:0;
+        right:0;
+        background-image:
+            /* MOBILE-ONLY ARTWORK. Separate file from the desktop
+               hero — see the note in index.html. If this file is
+               missing the hero photo simply won't render on phones,
+               so upload it before you push. To go back to a single
+               shared image, change this back to hero-bg.webp. */
+            url(/images/hero-bg-mobile.webp);
+        /* Full bleed edge-to-edge, sized slightly larger than 100%
+           (108%) so the outer edge of the source photo — where any
+           border/frame baked into the file would show — is cropped
+           off-screen instead of being visible. Any extra height
+           beyond the box is simply clipped by .hero's
+           overflow:hidden. */
+        background-size:108% auto;
+        background-position:center top;
+        background-repeat:no-repeat;
+    }
+
+}
+
+/* Smaller phones: the copy wraps onto more lines, so the headline
+   sizes down a touch to keep everything comfortable above the
+   scrim. */
+@media (max-width:480px){
+
+    .hero{
+        padding:88px 0 20px;
+    }
+
+    .hero-content h1{
+        font-size:clamp(1.625rem,7.4vw,2rem);
+    }
+
+    .hero-content p{
+        font-size:.9375rem;
+        line-height:1.6;
+    }
+
+}
+
+/* Landscape phones / very short screens: not enough vertical room
+   for the stretched column layout, so fall back to simple centred
+   copy over the photo. The desktop crop reads better than the tall
+   portrait one at this aspect ratio; the scrim above still applies
+   as-is for legibility. */
+@media (max-width:768px) and (max-height:560px){
+
+    .hero{
+        min-height:auto;
+        padding:84px 0 40px;
+        align-items:center;
+    }
+
+    .hero-bg-photo{
+        background-image:url(/images/hero-bg.webp);
+        background-position:75% 20%;
+    }
+
+    .hero-buttons{
+        margin-top:28px;
+        margin-bottom:0;
+    }
+
+}
+
+
+/* =========================================================
+   ITEM #2 — SERVICES SECTION: PLAIN & CLEAN
+   ---------------------------------------------------------
+   The section used to sit on top of the hero as a rounded
+   white "card" — 32px top corners, a big upward shadow and a
+   negative top margin that pulled it over the hero edge.
+   That rounded lip + shadow was reading as a border/seam.
+   It's now a flat, plain white section that simply follows
+   the hero. Card styling inside the section (the individual
+   .service-item tiles) is unchanged.
+   ========================================================= */
+
+.services{
+    margin-top:0;
+    border-radius:0;
+    box-shadow:none;
+    border:0;
+}
+
+@media(max-width:768px){
+    .services{
+        margin-top:0;
+        border-radius:0;
+        box-shadow:none;
+    }
+}

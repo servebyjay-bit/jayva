@@ -24,6 +24,8 @@
 
 <title>Jay Boy Olan-Olan | Social Media Manager & Content Strategist</title>
 
+<link rel="manifest" href="/manifest.json">
+
 <meta
     name="description"
     content="Jay Boy Olan-Olan (Jay VA) helps businesses grow through social media management, content strategy, creative design, and digital marketing support. Explore my portfolio and book a free discovery call."
@@ -152,9 +154,22 @@
          users/bots without JS)
     ========================================== -->
 
+    <!-- ITEM #3 — separate hero art for desktop vs mobile.
+         The media attribute is what makes this worth doing: without
+         it a phone would preload the wide desktop image AND then
+         download the mobile one from CSS. With it, each device
+         fetches exactly one file. The breakpoint mirrors the CSS
+         (max-width:768px). -->
     <link rel="preload"
           as="image"
           href="images/hero-bg.webp"
+          media="(min-width:769px)"
+          fetchpriority="high">
+
+    <link rel="preload"
+          as="image"
+          href="images/hero-bg-mobile.webp"
+          media="(max-width:768px)"
           fetchpriority="high">
 
     <link rel="preload"
@@ -244,8 +259,8 @@
 
                 <ul class="nav-links" id="primary-navigation">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -276,11 +291,21 @@
     <!-- HERO SECTION -->
 <section class="hero" id="home">
 
-    <!-- ITEM #1 — full-bleed hero background photo, webp-ready.
-         Upload your image as images/hero-bg.webp (wide/landscape,
-         1920x1080 or similar works well) — until then this layer
-         stays invisible and the section looks exactly as it does
-         today. -->
+    <!-- ITEM #1 — hero background photo. TWO FILES, both required:
+
+           images/hero-bg.webp         desktop / tablet (>=769px)
+                                       landscape, ~1920x1080
+
+           images/hero-bg-mobile.webp  phones (<=768px)
+                                       PORTRAIT, ~1000x1400
+
+         The mobile file is a genuinely different crop, not a resize:
+         on a phone this layer is a tall narrow band in the lower half
+         of the hero, so a landscape photo has to zoom hard to cover it
+         and the subject drifts out of frame. Export the mobile crop
+         with the subject centred and headroom at the top (the top
+         ~132px fades into the white background) and leave the lower
+         middle reasonably clean, since the two CTAs sit there. -->
     <div class="hero-bg-photo" aria-hidden="true"></div>
 
     <div class="container">
@@ -325,9 +350,108 @@
 
 </section>
 
-    
+    <!-- SERVICES -->
+    <section id="services" class="services reveal">
 
-    
+        <div class="container">
+
+            <div class="services-grid">
+
+                <div class="services-intro">
+
+                    <div class="section-heading">
+
+                        <span>WHAT I DO</span>
+
+                        <h2>
+                            Services Designed
+                            For Growth
+                        </h2>
+
+                        <p>
+                            Helping businesses attract the right audience, build credibility, and convert attention into measurable growth.
+                        </p>
+
+                    </div>
+
+                    <a href="#services" class="btn-secondary services-cta">
+                        Explore My Services
+                    </a>
+
+                </div>
+
+                <div class="services-wrapper">
+
+    <div class="service-item">
+        <div class="service-icon" aria-hidden="true">
+            <img src="images/social media management.webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="service-title">
+            <h3>Social Media Management & Strategy</h3>
+        </div>
+
+        <div class="service-content">
+            <p>
+                I help businesses plan, create, schedule, and manage social media content with purpose. From content calendars and creative posts to community engagement and performance reporting, I help build a stronger online presence.
+            </p>
+        </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-icon" aria-hidden="true">
+            <img src="images/icons/aperture (1).webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
+        </div>
+        <div class="service-title">
+            <h3>Creative Social Media Design</h3>
+        </div>
+
+        <div class="service-content">
+            <p>
+                Branded graphics, carousels, promotional creatives, and visual content designed to communicate your message clearly and consistently.
+            </p>
+        </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-icon" aria-hidden="true">
+            <img src="images/video editing.webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2.4"/><path d="m15.5 10.5 5.4-3.2a.8.8 0 0 1 1.2.7v8l-5.4-3.2"/></svg>
+        </div>
+        <div class="service-title">
+            <h3>Video & Photo Editing</h3>
+        </div>
+
+        <div class="service-content">
+            <p>
+                Engaging short-form video, photo editing, and content visuals that support your social media strategy and brand identity.
+            </p>
+        </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-icon" aria-hidden="true">
+            <img src="images/services/icon-website-design.webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.4 2.6 3.7 5.7 3.7 9s-1.3 6.4-3.7 9c-2.4-2.6-3.7-5.7-3.7-9s1.3-6.4 3.7-9Z"/></svg>
+        </div>
+        <div class="service-title">
+            <h3>Website & Landing Page Design</h3>
+        </div>
+
+        <div class="service-content">
+            <p>
+                Clean, responsive websites and landing pages designed to communicate your brand, showcase your work, and guide visitors toward action.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+    </section>
 
    <!-- FEATURED WORK -->
 <section class="portfolio reveal" id="portfolio">
@@ -1312,110 +1436,7 @@
 
     </div>
 
-</section>
 
-    <!-- SERVICES -->
-    <section id="services" class="services reveal">
-
-        <div class="container">
-
-            <div class="services-grid">
-
-                <div class="services-intro">
-
-                    <div class="section-heading">
-
-                        <span>WHAT I DO</span>
-
-                        <h2>
-                            Services Designed
-                            For Growth
-                        </h2>
-
-                        <p>
-                            Helping businesses attract the right audience, build credibility, and convert attention into measurable growth.
-                        </p>
-
-                    </div>
-
-                    <a href="#services" class="btn-secondary services-cta">
-                        Explore My Services
-                    </a>
-
-                </div>
-
-                <div class="services-wrapper">
-
-    <div class="service-item">
-        <div class="service-icon" aria-hidden="true">
-            <img src="images/social media management.webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-        </div>
-        <div class="service-title">
-            <h3>Social Media Management & Strategy</h3>
-        </div>
-
-        <div class="service-content">
-            <p>
-                I help businesses plan, create, schedule, and manage social media content with purpose. From content calendars and creative posts to community engagement and performance reporting, I help build a stronger online presence.
-            </p>
-        </div>
-    </div>
-
-    <div class="service-item">
-        <div class="service-icon" aria-hidden="true">
-            <img src="images/icons/aperture (1).webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
-        </div>
-        <div class="service-title">
-            <h3>Creative Social Media Design</h3>
-        </div>
-
-        <div class="service-content">
-            <p>
-                Branded graphics, carousels, promotional creatives, and visual content designed to communicate your message clearly and consistently.
-            </p>
-        </div>
-    </div>
-
-    <div class="service-item">
-        <div class="service-icon" aria-hidden="true">
-            <img src="images/video editing.webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2.4"/><path d="m15.5 10.5 5.4-3.2a.8.8 0 0 1 1.2.7v8l-5.4-3.2"/></svg>
-        </div>
-        <div class="service-title">
-            <h3>Video & Photo Editing</h3>
-        </div>
-
-        <div class="service-content">
-            <p>
-                Engaging short-form video, photo editing, and content visuals that support your social media strategy and brand identity.
-            </p>
-        </div>
-    </div>
-
-    <div class="service-item">
-        <div class="service-icon" aria-hidden="true">
-            <img src="images/services/icon-website-design.webp" alt="" class="service-icon-image" width="22" height="22" loading="lazy" decoding="async" onerror="this.closest('.service-icon').classList.add('icon-pending')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.4 2.6 3.7 5.7 3.7 9s-1.3 6.4-3.7 9c-2.4-2.6-3.7-5.7-3.7-9s1.3-6.4 3.7-9Z"/></svg>
-        </div>
-        <div class="service-title">
-            <h3>Website & Landing Page Design</h3>
-        </div>
-
-        <div class="service-content">
-            <p>
-                Clean, responsive websites and landing pages designed to communicate your brand, showcase your work, and guide visitors toward action.
-            </p>
-        </div>
-    </div>
-
-</div>
-
-            </div>
-
-        </div>
-
-    </section>
 
     <!-- WHY BUSINESSES CHOOSE JAY -->
 
@@ -1858,7 +1879,7 @@
                 placeholder=" "></textarea>
 
             <label for="message">
-                Tell me about your project...
+                Tell me about your business...
             </label>
 
         </div>
